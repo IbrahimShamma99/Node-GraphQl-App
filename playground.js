@@ -12,6 +12,7 @@ const typeDefs = gql `
   type Query {
     quotes: [Quote]
   }
+  
 `;
 
 const quotes = {};
@@ -34,6 +35,7 @@ const resolvers = {
         quotes: () => Object.values(quotes),
     },
 };
+
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
