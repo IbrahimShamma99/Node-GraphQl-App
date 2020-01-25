@@ -34,3 +34,9 @@ const resolvers = {
         quotes: () => Object.values(quotes),
     },
 };
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen().then(({ url }) => {
+    console.log(`🚀  Server ready at ${url}`); // eslint-disable-line no-console
+});
