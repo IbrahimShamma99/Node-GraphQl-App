@@ -7,6 +7,7 @@ const app = express();
 import config from './config/config';
 import { graphql } from 'graphql';
 import graphqlHTTP from 'express-graphql';
+import Routes from './config/Routes';
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -19,16 +20,16 @@ db.once('open', () => {
 })
 
 
-app.get('/', (req, res) => {
+app.get(Routes.base, (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
 
-app.use('/graphql', graphqlHTTP(req => ({
+app.use(Routes.Graph, graphqlHTTP(req => ({
     schema
-    //,graphiql:true
+    ,graphiql:true
 })))
 
-app.post('/quotes', (req, res) => {
+app.post(Routes.quotes, (req, res) => {
     // Insert into TodoList Collection
     var todoItem = new ToDo({
         itemId: 1,
